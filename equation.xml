@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<root>
+<Equation>a+b*c</Equation>
+<Parameters>
+    <a>5</a>
+    <b>6</b>
+    <c>7</c>
+</Parameters>
+</root>
