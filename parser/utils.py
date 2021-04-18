@@ -24,7 +24,7 @@ class Node:
 
 
 mappings = {'+': TokenType.T_PLUS, '-': TokenType.T_MINUS, '*': TokenType.T_MULT, '/': TokenType.T_DIV, '^': TokenType.T_POW,
-            'sqrt': TokenType.T_SQRT, '(': TokenType.T_LPAR, ')': TokenType.T_RPAR}
+            '~': TokenType.T_SQRT, '(': TokenType.T_LPAR, ')': TokenType.T_RPAR}
 
 operations = {TokenType.T_PLUS: operator.add, TokenType.T_MINUS: operator.sub, TokenType.T_MULT: operator.mul,  # here to add our operations
               TokenType.T_DIV: operator.truediv, TokenType.T_POW: operator.pow, TokenType.T_SQRT: math.sqrt}

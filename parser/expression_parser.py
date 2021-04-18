@@ -5,23 +5,15 @@ from utils import TokenType, Node, mappings
 
 def lexical_analysis(s, values):
     tokens = []
-    i = 0
-    while i < len(s):
-        if s[i] in mappings:
-            token_type = mappings[s[i]]
-            token = Node(token_type, value=s[i])
-            i += 1
-        elif re.match(r'[a-z]', s[i]):
-            if s[i] == 's' and s[i + 1] == 'q' and s[i + 2] == 'r' and s[i + 3] == 't':
-                token_type = mappings[s[i:i + 4]]
-                token = Node(token_type, value=s[i:i + 4])
-                i += 4
-            else:
-                val = values.get(s[i])
-                token = Node(TokenType.T_NUM, value=int(val))  # convert str to list of integers list(map(int, list(val)))
-                i += 1
+    for c in s:
+        if c in mappings:
+            token_type = mappings[c]
+            token = Node(token_type, value=c)
+        elif re.match(r'[a-z]', c):
+            val = values.get(c)
+            token = Node(TokenType.T_NUM, value=int(val))  # convert str to list of integers list(map(int, list(val)))
         else:
-            raise Exception('Invalid syntax: {}'.format(s[i]))
+            raise Exception('Invalid syntax: {}'.format(c))
         tokens.append(token)
     tokens.append(Node(TokenType.T_END))
     return tokens

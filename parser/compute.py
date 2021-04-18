@@ -30,12 +30,12 @@ def compute(node):
 
 
 def get_result():
-    parsed_formula = parse_expression('a+(sqrt(d)^(c-b))', {'a': '2', 'b': '1', 'c': '3', 'd': '4'})
+    parsed_formula = parse_expression('a+(~(d)^(c-b))', {'a': '2', 'b': '1', 'c': '3', 'd': '4'})
     result = compute(parsed_formula)
     sentences = []
     for i, step in enumerate(steps):
         op = operations[mappings.get(step[0])]
-        if step[0] == 'sqrt':
+        if step[0] == '~':
             op_res = op(step[1])
             sentences.append('Step ' + str(i) + ': ' + step[0] + '(' + str(step[1]) + ')=' + str(op_res))
         else:
