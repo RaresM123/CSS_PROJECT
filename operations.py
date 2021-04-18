@@ -1,5 +1,4 @@
 def add_positive_numbers(first_number, second_number):
-
     result = []
     while len(first_number) and len(second_number):
 
@@ -19,7 +18,6 @@ def add_positive_numbers(first_number, second_number):
         result.insert(0, last_digit_b)
         second_number = second_number[:len(second_number) - 1]
 
-    print(result)
     for i in range(len(result) - 1, 0, -1):
         # print(i)
         if result[i] >= 10:
@@ -160,7 +158,7 @@ def karatsubaMultiplication(x ,y):
 
 def multiply_numbers(first_number, second_number):
     result = karatsubaMultiplication(first_number, second_number)
-    return result
+    return str(result)
 
 
 def compare_result(result, second_number):
