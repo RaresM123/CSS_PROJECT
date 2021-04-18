@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter import filedialog
+from tkinter import messagebox
 from compute import get_result
 import xmltodict
 
@@ -54,8 +55,8 @@ class MainWindow(Frame):
 
         self.pack(fill=BOTH, expand=1)
 
-        label2 = Label(self,text='Enter expression',background='#BEC2BC')
-        label2.pack(side="top", fill="x",ipady=10)
+        label = Label(self,text='Enter expression',background='#BEC2BC')
+        label.pack(side="top", fill="x",ipady=10)
 
         self.equation_entry = Entry(self,font = "Helvetica 24 bold",justify="center")
         self.equation_entry.pack(side="top", fill="x",ipady=10)
@@ -116,6 +117,7 @@ class MainWindow(Frame):
 
     def calculate(self):
         equation = self.equation_entry.get()
+
         variables = {self.var_name_widgets[i].get():self.var_value_widgets[i].get() for i in range(len(self.var_name_widgets))}
         for frame in self.frames:
             frame.destroy()
@@ -124,7 +126,13 @@ class MainWindow(Frame):
         self.var_name_widgets = []
         self.var_value_widgets = [] 
 
-        result,sentences = get_result(equation,variables)
+        try:
+            result,sentences = get_result(equation,variables)
+        except ValueError as e:
+            print(e)
+            self.equation_entry.delete(0, END)
+            messagebox.showerror(title='Equation error', message=e)
+            return
 
         self.equation_entry.delete(0, END)
         self.equation_entry.insert(0, str(result))
@@ -139,7 +147,13 @@ class MainWindow(Frame):
         equation = xml_contents['root']['Equation']
         variables = dict(xml_contents['root']['Parameters'])
 
-        result,sentences = get_result(equation,variables)
+        try:
+            result,sentences = get_result(equation,variables)
+        except ValueError as e:
+            print(e)
+            self.equation_entry.delete(0, END)
+            messagebox.showerror(title='Equation error', message=e)
+            return
 
 
         self.equation_entry.delete(0, END)

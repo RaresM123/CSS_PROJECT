@@ -40,8 +40,6 @@ def add_numbers(first_number, second_number):
 
 
 def process_equal_len_numbers(result):
-    assert(result[0] > 0), "Negative result for difference"
-
     for i in range(len(result) - 1, 0, -1):
 
         if result[i] < 0:
@@ -61,6 +59,9 @@ def process_different_len_numbers(result):
 
 
 def difference_positive_numbers(first_number, second_number):
+    if len(first_number) < len(second_number):
+         raise ValueError("Negative result for difference for arguments "+first_number+", "+second_number)
+    first_number_copy,second_number_copy=first_number,second_number
     result = []
     _equal_case = False
     _sign = '+'
@@ -95,6 +96,8 @@ def difference_positive_numbers(first_number, second_number):
     while result[i] == 0:
         i = i + 1
     result = result[i:]
+    if result[0] < 0:
+        raise ValueError("Negative result for difference for arguments "+first_number_copy+", "+second_number_copy)
     if _equal_case:
         result = ''.join([str(item) for item in process_equal_len_numbers(result)])
     else:
@@ -195,7 +198,8 @@ def divide_positive_numbers(first_number, second_number):
 def divide_numbers(first_number, second_number):
 
     if first_number == '0' or second_number == '0':
-        return "integer division with 0"
+        raise ValueError("Division by zero from numbers "+first_number+", "+second_number)
+
     result = divide_positive_numbers(first_number, second_number)
     return result
 

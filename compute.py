@@ -27,12 +27,22 @@ def compute(node):
         step.append(right_result)
 
     steps.append(step)
+    try:
+        result = operation(left_result, right_result)
+    except ValueError as e:
+        raise
+
     return operation(left_result, right_result)
 
 
 def get_result(formula,parameters):
+    global steps
+    steps = []
     parsed_formula = parse_expression(formula,parameters)
-    result = compute(parsed_formula)
+    try:
+        result = compute(parsed_formula)
+    except ValueError as e:
+        raise
     sentences = {}
     for i, step in enumerate(steps):
         op = operations[mappings.get(step[0])]
@@ -47,7 +57,7 @@ def get_result(formula,parameters):
     return result, sentences
 
 
-# res, prop = get_result("c+41+100+3",{'c':'100','d':'30'})
+# res, prop = get_result("100-200",{'c':'100','d':'30'})
 # for _ in prop:
 #     print(_,prop[_])
 # print('Result: ' + str(res))

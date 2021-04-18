@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Steps>
-	<Step 0>100+100=200</Step 0>
-	<Step 1>200+100=300</Step 1>
-	<Step 2>6*7=42</Step 2>
-	<Step 3>5+42=47</Step 3>
+	<Step 0>6*7=42</Step 0>
+	<Step 1>5+42=47</Step 1>
 	<Result>47</Result>
 </Steps>
