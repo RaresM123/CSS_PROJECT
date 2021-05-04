@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import filedialog
 from tkinter import messagebox
-from compute import get_result
+from compute import Computation
 import xmltodict
 
 
@@ -127,7 +127,7 @@ class MainWindow(Frame):
         self.var_value_widgets = [] 
 
         try:
-            result,sentences = get_result(equation,variables)
+            result,sentences = Computation().get_result(equation,variables)
         except ValueError as e:
             print(e)
             self.equation_entry.delete(0, END)
@@ -148,7 +148,7 @@ class MainWindow(Frame):
         variables = dict(xml_contents['root']['Parameters'])
 
         try:
-            result,sentences = get_result(equation,variables)
+            result,sentences = Computation().get_result(equation,variables)
         except ValueError as e:
             print(e)
             self.equation_entry.delete(0, END)
