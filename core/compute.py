@@ -1,10 +1,11 @@
 from .expression_parser import Parser
 from .utils import TokenType, operations, mappings
-from .big_number import BigNumber
 
 steps = []
 
+
 class Computation:
+
     def __compute(self, node):
         global steps
         step = []
@@ -34,11 +35,10 @@ class Computation:
 
         return operation(left_result, right_result)
 
-
-    def get_result(self, formula,parameters):
+    def get_result(self, formula, parameters):
         global steps
         steps = []
-        parsed_formula = Parser().parse_expression(formula,parameters)
+        parsed_formula = Parser().parse_expression(formula, parameters)
         try:
             result = self.__compute(parsed_formula)
         except ValueError as e:
@@ -55,9 +55,3 @@ class Computation:
 
         sentences['Result'] = result
         return result, sentences
-
-
-# res, prop = get_result("100-200",{'c':'100','d':'30'})
-# for _ in prop:
-#     print(_,prop[_])
-# print('Result: ' + str(res))

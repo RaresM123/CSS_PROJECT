@@ -1,8 +1,11 @@
 import re
+
 from .big_number import BigNumber
 from .utils import TokenType, Node, mappings
 
+
 class Parser:
+
     def __lexical_analysis(self, s, values):
         tokens = []
         i = 0
@@ -13,10 +16,12 @@ class Parser:
                 token = Node(token_type, value=c)
             elif re.match(r'[a-z]', c):
                 val = values.get(c)
+                if val is None:
+                    raise Exception('Missing Value: {}'.format(c))
                 token = Node(TokenType.T_NUM, value=BigNumber(val))  # convert str to list of integers list(map(int, list(val)))
-            elif re.match(r'[\d]+',c):
+            elif re.match(r'[\d]+', c):
                 current_string = ""
-                while i < len(s) and re.match(r'[\d]+',s[i]):
+                while i < len(s) and re.match(r'[\d]+', s[i]):
                     current_string += s[i]
                     i += 1
                 i -= 1
@@ -29,7 +34,6 @@ class Parser:
         tokens.append(Node(TokenType.T_END))
         return tokens
 
-
     def __parse_exp(self, tokens):
         left_node = self.__parse_exp2(tokens)
 
@@ -41,8 +45,7 @@ class Parser:
 
         return left_node
 
-
-    def __parse_exp2(self,tokens):
+    def __parse_exp2(self, tokens):
         left_node = self.__parse_exp3(tokens)
 
         while tokens[0].token_type in [TokenType.T_MULT, TokenType.T_DIV, TokenType.T_POW]:
@@ -52,7 +55,6 @@ class Parser:
             left_node = node
 
         return left_node
-
 
     def __parse_exp3(self, tokens):
         if tokens[0].token_type == TokenType.T_NUM:
@@ -71,13 +73,11 @@ class Parser:
 
         return expression
 
-
     def __match(self, tokens, token):
         if tokens[0].token_type == token:
             return tokens.pop(0)
         else:
             raise Exception('Invalid syntax {}'.format(tokens[0].token_type))
-
 
     def parse_expression(self, formula, values):  # format a+(b*a), {a:'1',b:'2'}
         tokens = self.__lexical_analysis(formula, values)
