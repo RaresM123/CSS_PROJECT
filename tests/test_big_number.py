@@ -1,4 +1,10 @@
 import unittest.mock
+import sys, os
+if os.name == 'posix':
+    sep = '/'
+else:
+    sep = '\\'
+sys.path.append(os.getcwd().rsplit(sep,1)[0])
 from core.big_number import BigNumber
 
 

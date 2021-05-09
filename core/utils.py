@@ -26,4 +26,4 @@ mappings = {'+': TokenType.T_PLUS, '-': TokenType.T_MINUS, '*': TokenType.T_MULT
             '~': TokenType.T_SQRT, '(': TokenType.T_LPAR, ')': TokenType.T_RPAR}
 
 operations = {TokenType.T_PLUS: BigNumber.__add__, TokenType.T_MINUS: BigNumber.__sub__, TokenType.T_MULT: BigNumber.__mul__,  # here to add our operations
-              TokenType.T_DIV: BigNumber.__div__, TokenType.T_POW: BigNumber.__xor__, TokenType.T_SQRT: BigNumber.__invert__}
+              TokenType.T_DIV: BigNumber.__truediv__, TokenType.T_POW: BigNumber.__xor__, TokenType.T_SQRT: BigNumber.__invert__}
