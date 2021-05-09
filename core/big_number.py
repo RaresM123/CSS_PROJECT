@@ -16,7 +16,7 @@ class BigNumber:
     def __mul__(self, o):
         return BigNumber(self.operations.multiply_numbers(self.number, o.number))
 
-    def __div__(self, o):
+    def __truediv__(self, o):
         return BigNumber(self.operations.divide_numbers(self.number, o.number))
 
     def __xor__(self, o):

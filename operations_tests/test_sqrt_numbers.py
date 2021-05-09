@@ -8,6 +8,7 @@ sys.path.append(os.getcwd().rsplit(sep,1)[0])
 from core import operations
 from operations_tests.util_decorators import timeout
 
+
 class FunctionTest(unittest.TestCase):
 
     def setUp(self) -> None:

@@ -52,9 +52,9 @@ class FunctionTest(unittest.TestCase):
                                                              second_number=self.big_positive_number_1),
                          self.result_difference_1)
 
-        self.assertTrue(self.test_object.difference_numbers(first_number=self.big_positive_number_4,
-                                                            second_number=self.big_positive_number_3),
-                        self.result_difference_2)
+        self.assertEqual(self.test_object.difference_numbers(first_number=self.big_positive_number_4,
+                                                             second_number=self.big_positive_number_3),
+                         self.result_difference_2)
 
     def test_big_positive_numbers_negative_result(self):
         with self.assertRaises(ValueError):
@@ -70,9 +70,9 @@ class FunctionTest(unittest.TestCase):
                                                              second_number=self.small_positive_number_2),
                          self.result_difference_3)
 
-        self.assertTrue(self.test_object.difference_numbers(first_number=self.small_positive_number_3,
-                                                            second_number=self.small_positive_number_4),
-                        self.result_difference_4)
+        self.assertEqual(self.test_object.difference_numbers(first_number=self.small_positive_number_3,
+                                                             second_number=self.small_positive_number_4),
+                         self.result_difference_4)
 
     def test_small_positive_numbers_negative_result(self):
         with self.assertRaises(ValueError):
@@ -88,9 +88,9 @@ class FunctionTest(unittest.TestCase):
                                                              second_number=self.very_big_positive_number_1),
                          self.result_difference_5)
 
-        self.assertTrue(self.test_object.difference_numbers(first_number=self.very_big_positive_number_3,
-                                                            second_number=self.very_big_positive_number_4),
-                        self.result_difference_6)
+        self.assertEqual(self.test_object.difference_numbers(first_number=self.very_big_positive_number_3,
+                                                             second_number=self.very_big_positive_number_4),
+                         self.result_difference_6)
 
     def test_very_big_positive_numbers_negative_result(self):
         with self.assertRaises(ValueError):

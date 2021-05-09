@@ -79,41 +79,29 @@ class FunctionTest(unittest.TestCase):
             self.test_object.divide_numbers(first_number=self.big_positive_number_3,
                                             second_number='0')
 
-    # def test_negative_numbers(self):
-    #
-    #     #aici neaparat de verificat
-    #     try:
-    #         self.test_object.divide_numbers(first_number=self.negative_number_1,
-    #                                         second_number=self.negative_number_2)
-    #     except Exception as e:
-    #         print(e)
-    #         print(type(e))
-    #     with self.assertRaises(ValueError):
-    #         self.test_object.divide_numbers(first_number=self.negative_number_1,
-    #                                         second_number=self.negative_number_2)
-    #
-    #     with self.assertRaises(ValueError):
-    #         self.test_object.divide_numbers(first_number=self.negative_number_1,
-    #                                         second_number=self.positive_number_1)
-    #
-    #     with self.assertRaises(ValueError):
-    #         self.test_object.divide_numbers(first_number=self.negative_number_2,
-    #                                         second_number=self.positive_number_1)
-    #
-    #     with self.assertRaises(ValueError):
-    #         self.test_object.divide_numbers(first_number=self.negative_number_1,
-    #                                         second_number=self.positive_number_2)
-    #
-    #     with self.assertRaises(ValueError):
-    #         self.test_object.divide_numbers(first_number=self.negative_number_2,
-    #                                         second_number=self.positive_number_2)
+    def test_negative_numbers(self):
+
+        with self.assertRaises(ValueError):
+            self.test_object.divide_numbers(first_number=self.negative_number_1,
+                                            second_number=self.negative_number_2)
+
+        with self.assertRaises(ValueError):
+            self.test_object.divide_numbers(first_number=self.negative_number_1,
+                                            second_number=self.positive_number_1)
+
+        with self.assertRaises(ValueError):
+            self.test_object.divide_numbers(first_number=self.negative_number_2,
+                                            second_number=self.positive_number_1)
+
+        with self.assertRaises(ValueError):
+            self.test_object.divide_numbers(first_number=self.negative_number_1,
+                                            second_number=self.positive_number_2)
+
+        with self.assertRaises(ValueError):
+            self.test_object.divide_numbers(first_number=self.negative_number_2,
+                                            second_number=self.positive_number_2)
 
     def test_wrong_numbers(self):
-
-        #de facut si ceva aici ca ar fi trebuit sa arunce o eroare
-
-        print(self.test_object.divide_numbers(first_number=self.wrong_char_number_1,
-                                        second_number=self.wrong_char_number_2))
 
         with self.assertRaises(ValueError):
             self.test_object.divide_numbers(first_number=self.wrong_char_number_1,
@@ -135,7 +123,7 @@ class FunctionTest(unittest.TestCase):
             self.test_object.divide_numbers(first_number=self.wrong_char_number_2,
                                             second_number=self.positive_number_2)
 
-    @timeout(30)
+    @timeout(3)
     def test_big_positive_numbers(self):
 
         self.assertEqual(self.test_object.divide_numbers(first_number=self.big_positive_number_2,
@@ -154,7 +142,7 @@ class FunctionTest(unittest.TestCase):
                                                         second_number=self.big_positive_number_4),
                         self.result_divide_4)
 
-    @timeout(30)
+    @timeout(3)
     def test_very_big_positive_numbers(self):
 
         self.assertEqual(self.test_object.divide_numbers(first_number=self.very_big_positive_number_2,
@@ -167,11 +155,11 @@ class FunctionTest(unittest.TestCase):
 
         self.assertEqual(self.test_object.divide_numbers(first_number=self.very_big_positive_number_3,
                                                          second_number=self.very_big_positive_number_4),
-                         self.result_divide_3)
+                         self.result_divide_11)
 
         self.assertTrue(self.test_object.divide_numbers(first_number=self.very_big_positive_number_4,
                                                         second_number=self.very_big_positive_number_3),
-                        self.result_divide_4)
+                        self.result_divide_12)
 
 
 if __name__ == '__main__':

@@ -51,10 +51,6 @@ class FunctionTest(unittest.TestCase):
     @timeout(20)
     def test_negative_numbers(self):
 
-        #aici trebuie gasita o varianta, dare ok si asa
-        print(self.test_object.power_numbers(first_number=self.negative_number_1,
-                                             second_number=self.negative_number_2))
-
         with self.assertRaises(ValueError):
             self.test_object.power_numbers(first_number=self.negative_number_1,
                                            second_number=self.negative_number_2)

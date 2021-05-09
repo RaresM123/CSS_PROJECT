@@ -8,6 +8,7 @@ sys.path.append(os.getcwd().rsplit(sep,1)[0])
 from core import operations
 from operations_tests.util_decorators import timeout
 
+
 class FunctionTest(unittest.TestCase):
 
     def setUp(self) -> None:
@@ -108,7 +109,7 @@ class FunctionTest(unittest.TestCase):
             self.test_object.multiply_numbers(first_number=self.wrong_char_number_2,
                                               second_number=self.positive_number_2)
 
-    @timeout(30)
+    @timeout(2)
     def test_very_big_positive_numbers(self):
 
         self.assertEqual(self.test_object.multiply_numbers(first_number=self.very_big_positive_number_1,
