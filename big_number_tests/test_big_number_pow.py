@@ -60,6 +60,7 @@ class FunctionTest(unittest.TestCase):
         self.assertEqual((self.positive_number_4 ^ self.positive_number_3),
                          self.result_object_4)
 
+    @timeout(3)
     def test_negative_numbers(self):
 
         with self.assertRaises(ValueError):
@@ -77,6 +78,7 @@ class FunctionTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.negative_number_2 ^ self.positive_number_2
 
+    @timeout(3)
     def test_wrong_numbers(self):
 
         with self.assertRaises(ValueError):

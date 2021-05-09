@@ -51,7 +51,7 @@ class FunctionTest(unittest.TestCase):
 
         self.test_object = operations.Operations()
 
-    @timeout(30)
+    @timeout(3)
     def test_small_positive_numbers(self):
 
         self.assertEqual(self.test_object.divide_numbers(first_number=self.small_positive_number_1,
@@ -70,6 +70,7 @@ class FunctionTest(unittest.TestCase):
                                                         second_number=self.small_positive_number_3),
                         self.result_divide_8)
 
+    @timeout(3)
     def test_zero_division(self):
         with self.assertRaises(ValueError):
             self.test_object.divide_numbers(first_number=self.big_positive_number_1,
@@ -79,6 +80,7 @@ class FunctionTest(unittest.TestCase):
             self.test_object.divide_numbers(first_number=self.big_positive_number_3,
                                             second_number='0')
 
+    @timeout(3)
     def test_negative_numbers(self):
 
         with self.assertRaises(ValueError):
@@ -101,6 +103,7 @@ class FunctionTest(unittest.TestCase):
             self.test_object.divide_numbers(first_number=self.negative_number_2,
                                             second_number=self.positive_number_2)
 
+    @timeout(3)
     def test_wrong_numbers(self):
 
         with self.assertRaises(ValueError):

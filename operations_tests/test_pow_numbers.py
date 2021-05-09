@@ -70,7 +70,7 @@ class FunctionTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.test_object.power_numbers(first_number=self.negative_number_2,
                                            second_number=self.positive_number_2)
-
+    @timeout(3)
     def test_wrong_numbers(self):
 
         with self.assertRaises(ValueError):

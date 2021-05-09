@@ -51,6 +51,7 @@ class FunctionTest(unittest.TestCase):
         self.wrong_char_number_1 = BigNumber("dq3282023ds")
         self.wrong_char_number_2 = BigNumber("dsajdl3228320das")
 
+    @timeout(3)
     def test_big_positive_numbers(self):
         self.assertEqual((self.big_positive_number_2 - self.big_positive_number_1).number,
                          self.result_difference_1)
@@ -64,6 +65,7 @@ class FunctionTest(unittest.TestCase):
         self.assertEqual((self.big_positive_number_4 - self.big_positive_number_3),
                          self.result_object_2)
 
+    @timeout(3)
     def test_big_positive_numbers_negative_result(self):
         with self.assertRaises(ValueError):
             self.big_positive_number_1 - self.big_positive_number_2
@@ -71,6 +73,7 @@ class FunctionTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.big_positive_number_3 - self.big_positive_number_4
 
+    @timeout(3)
     def test_small_positive_numbers(self):
         self.assertEqual((self.small_positive_number_1 - self.small_positive_number_2).number,
                          self.result_difference_3)
@@ -84,6 +87,7 @@ class FunctionTest(unittest.TestCase):
         self.assertEqual((self.small_positive_number_3 - self.small_positive_number_4),
                          self.result_object_4)
 
+    @timeout(3)
     def test_small_positive_numbers_negative_result(self):
         with self.assertRaises(ValueError):
             self.small_positive_number_2 - self.small_positive_number_1
@@ -91,6 +95,7 @@ class FunctionTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.small_positive_number_4 - self.small_positive_number_3
 
+    @timeout(3)
     def test_very_big_positive_numbers(self):
         self.assertEqual((self.very_big_positive_number_2 - self.very_big_positive_number_1).number,
                          self.result_difference_5)
@@ -101,6 +106,7 @@ class FunctionTest(unittest.TestCase):
         self.assertEqual((self.very_big_positive_number_3 - self.very_big_positive_number_4),
                          self.result_object_6)
 
+    @timeout(3)
     def test_very_big_positive_numbers_negative_result(self):
         with self.assertRaises(ValueError):
             self.very_big_positive_number_1 - self.very_big_positive_number_2
@@ -108,6 +114,7 @@ class FunctionTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.small_positive_number_4 - self.small_positive_number_3
 
+    @timeout(3)
     def test_negative_numbers(self):
 
         with self.assertRaises(ValueError):
@@ -125,6 +132,7 @@ class FunctionTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.negative_number_2 - self.positive_number_2
 
+    @timeout(3)
     def test_wrong_numbers(self):
         with self.assertRaises(ValueError):
             self.wrong_char_number_1 - self.wrong_char_number_2
