@@ -33,7 +33,7 @@ class FunctionTest(unittest.TestCase):
         self.wrong_char_number_1 = BigNumber("dq")
         self.wrong_char_number_2 = BigNumber("das")
 
-    @timeout(30)
+    @timeout(3)
     def test_positive_numbers(self):
 
         self.assertEqual((self.positive_number_1 ^ self.positive_number_2).number,

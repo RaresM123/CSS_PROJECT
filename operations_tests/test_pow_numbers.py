@@ -29,7 +29,7 @@ class FunctionTest(unittest.TestCase):
 
         self.test_object = operations.Operations()
 
-    @timeout(60)
+    @timeout(3)
     def test_positive_numbers(self):
 
         self.assertEqual(self.test_object.power_numbers(first_number=self.positive_number_1,
@@ -48,7 +48,7 @@ class FunctionTest(unittest.TestCase):
                                                        second_number=self.positive_number_3),
                         self.result_pow_4)
 
-    @timeout(20)
+    @timeout(3)
     def test_negative_numbers(self):
 
         with self.assertRaises(ValueError):

@@ -109,7 +109,7 @@ class FunctionTest(unittest.TestCase):
             self.test_object.multiply_numbers(first_number=self.wrong_char_number_2,
                                               second_number=self.positive_number_2)
 
-    @timeout(2)
+    @timeout(3)
     def test_very_big_positive_numbers(self):
 
         self.assertEqual(self.test_object.multiply_numbers(first_number=self.very_big_positive_number_1,

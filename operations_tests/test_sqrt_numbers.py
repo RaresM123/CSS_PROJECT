@@ -49,7 +49,7 @@ class FunctionTest(unittest.TestCase):
 
         self.test_object = operations.Operations()
 
-    @timeout(30)
+    @timeout(3)
     def test_big_positive_numbers(self):
         self.assertEqual(self.test_object.sqrt_numbers(first_number=self.big_positive_number_1),
                          self.result_sqrt_1)
@@ -76,7 +76,7 @@ class FunctionTest(unittest.TestCase):
         self.assertEqual(self.test_object.sqrt_numbers(first_number=self.small_positive_number_4),
                          self.result_sqrt_8)
 
-    @timeout(10)
+    @timeout(3)
     def test_negative_numbers(self):
         with self.assertRaises(ValueError):
             self.test_object.sqrt_numbers(first_number=self.negative_number_1)
@@ -84,7 +84,7 @@ class FunctionTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.test_object.sqrt_numbers(first_number=self.negative_number_2)
 
-    @timeout(10)
+    @timeout(3)
     def test_wrong_numbers(self):
         with self.assertRaises(ValueError):
             self.test_object.sqrt_numbers(first_number=self.wrong_char_number_1)
@@ -92,7 +92,7 @@ class FunctionTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.test_object.sqrt_numbers(first_number=self.wrong_char_number_2)
 
-    @timeout(30)
+    @timeout(3)
     def test_very_big_positive_numbers(self):
         self.assertEqual(self.test_object.sqrt_numbers(first_number=self.very_big_positive_number_1),
                          self.result_sqrt_9)
