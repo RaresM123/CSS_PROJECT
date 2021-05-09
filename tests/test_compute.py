@@ -35,6 +35,9 @@ class ComputationTest(unittest.TestCase):
         self.expression2 = "a*b+c"
         self.less_values = {'a': '2', 'c': '3'}
 
+        self.expression_failure = "a * b"
+        self.values6 = {'a':'2','c':'3'}
+
         self.test_object = compute.Computation()
 
     def test_simple_expression(self):
@@ -64,3 +67,7 @@ class ComputationTest(unittest.TestCase):
     def test_less_values(self):
         with self.assertRaises(Exception):
             self.test_object.get_result(formula=self.expression2, parameters=self.less_values)
+
+    def test_invalid_expression(self):
+        with self.assertRaises(Exception):
+            self.test_object.get_result(formula=self.expression_failure, parameters=self.values6)

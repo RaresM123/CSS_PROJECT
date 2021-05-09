@@ -47,6 +47,8 @@ class FunctionTest(unittest.TestCase):
         self.wrong_char_number_1 = "dq3282023ds"
         self.wrong_char_number_2 = "dsajdl3228320das"
 
+        self.result_sqrt_11 = "1"
+
         self.test_object = operations.Operations()
 
     @timeout(3)
@@ -101,6 +103,10 @@ class FunctionTest(unittest.TestCase):
         self.assertEqual(self.test_object.sqrt_numbers(first_number=self.very_big_positive_number_2),
                          self.result_sqrt_10)
 
+    @timeout(3)
+    def test_exception(self):
+        self.assertEqual(self.test_object.sqrt_numbers(first_number="1"),
+                         self.result_sqrt_11)
 
 if __name__ == '__main__':
     unittest.main()
