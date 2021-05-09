@@ -33,7 +33,7 @@ class BigNumberTest(unittest.TestCase):
         with unittest.mock.patch('core.operations.Operations.divide_numbers') as op:
             nr1 = BigNumber('6')
             nr2 = BigNumber('2')
-            nr1.__div__(nr2)
+            nr1.__truediv__(nr2)
             op.assert_called_once_with('6', '2')
 
 
