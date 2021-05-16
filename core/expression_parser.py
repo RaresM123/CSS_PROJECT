@@ -4,9 +4,27 @@ from .big_number import BigNumber
 from .utils import TokenType, Node, mappings
 
 
+def assert_preconditions(formula):
+    assert len(formula) > 0, "empty expression"
+    assert formula.count('(') == formula.count(')'), "incorrect parenthesis"
+
+
+def assert_invariant(formula, parameters, parameter):
+    assert type(formula) == str, "different type for expression"
+    assert formula is not None, "expression is None"
+
+    assert type(parameters) == dict, "different type for expression values"
+    assert parameters is not None, "no values for expression"
+    for keys, values in parameters.items():
+        assert type(keys) == str and type(values) == str, 'Different type for parameters'
+    if parameter:
+        assert parameter in parameters.keys(), "no value for parameter " + parameter
+
+
 class Parser:
 
     def __lexical_analysis(self, s, values):
+        assert_preconditions(s)
         tokens = []
         i = 0
         while i < len(s):
@@ -15,6 +33,7 @@ class Parser:
                 token_type = mappings[c]
                 token = Node(token_type, value=c)
             elif re.match(r'[a-z]', c):
+                assert_invariant(s, values, c)
                 val = values.get(c)
                 if val is None:
                     raise Exception('Missing Value: {}'.format(c))
@@ -80,7 +99,9 @@ class Parser:
             raise Exception('Invalid syntax {}'.format(tokens[0].token_type))
 
     def parse_expression(self, formula, values):  # format a+(b*a), {a:'1',b:'2'}
+        assert_preconditions(formula)
         tokens = self.__lexical_analysis(formula, values)
         exp = self.__parse_exp(tokens)
+        assert_invariant(formula, values, None)
         self.__match(tokens, TokenType.T_END)
         return exp
