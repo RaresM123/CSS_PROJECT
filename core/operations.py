@@ -1,8 +1,11 @@
+from math import sqrt
+
+
 def assert_preconditions(number):
 
     assert number.count('-') == 0, "the number is negative"
     assert number.isnumeric() is True or number == "0", "the number is not numeric"
-    assert number.startswith("0") or number != "0", "The number can't start with 0"
+    assert (number[0] == '0' and len(number) == 1) or number[0] != '0', "The number can't start with 0"
 
 
 def assert_invariant(first_number, second_number):
@@ -64,10 +67,11 @@ class Operations:
         return ''.join([str(item) for item in result])
 
     def add_numbers(self, first_number, second_number):
+
+        assert_invariant(first_number, second_number)
         assert_preconditions(first_number)
         assert_preconditions(second_number)
         result = self.__add_positive_numbers(first_number, second_number)
-        assert_invariant(first_number, second_number)
         assert_postconditions(result, "+", first_number, second_number)
 
         return result
@@ -141,10 +145,10 @@ class Operations:
 
     def difference_numbers(self, first_number, second_number):
 
+        assert_invariant(first_number, second_number)
         assert_preconditions(first_number)
         assert_preconditions(second_number)
         result = self.__difference_positive_numbers(first_number, second_number)
-        assert_invariant(first_number, second_number)
         assert_postconditions(result, "-", first_number, second_number)
 
         return result
@@ -189,10 +193,11 @@ class Operations:
         return A + B + bd
 
     def multiply_numbers(self, first_number, second_number):
+
+        assert_invariant(first_number, second_number)
         assert_preconditions(first_number)
         assert_preconditions(second_number)
         result = str(self.__karatsubaMultiplication(first_number, second_number))
-        assert_invariant(first_number, second_number)
         assert_postconditions(result, "*", first_number, second_number)
 
         return result
@@ -228,6 +233,7 @@ class Operations:
 
     def divide_numbers(self, first_number, second_number):
 
+        assert_invariant(first_number, second_number)
         assert_preconditions(first_number)
         assert_preconditions(second_number)
         if first_number == '0' or second_number == '0':
@@ -241,27 +247,48 @@ class Operations:
 
     def power_numbers(self, first_number, second_number):
 
+        assert_invariant(first_number, second_number)
         assert_preconditions(first_number)
         assert_preconditions(second_number)
 
         result = '1'
         for _ in range(int(second_number)):
             result = str(self.multiply_numbers(result, first_number))
-        assert_invariant(first_number, second_number)
         assert_postconditions(result, "^", first_number, second_number)
 
         return result
 
     def sqrt_numbers(self, first_number):
+
+        assert_invariant(first_number, "sqrt")
         assert_preconditions(first_number)
 
         if first_number == '0' or first_number == '1':
             return first_number
         last_guess = self.divide_numbers(first_number, '2')
-        assert_invariant(first_number, "sqrt")
         while True:
             guess = self.divide_numbers(self.add_numbers(last_guess, self.divide_numbers(first_number, last_guess)), '2')
             if abs(int(guess) - int(last_guess)) <= 1:
                 assert_postconditions(str(int(guess)), "~", first_number, None)
                 return str(int(guess))
             last_guess = guess
+
+
+if __name__ == '__main__':
+
+    op = Operations()
+
+    print(op.sqrt_numbers('4'))
+
+    # print(op.add_numbers("1243", 5))
+
+    # print(op.multiply_numbers("123", "-132"))
+
+    # print(op.multiply_numbers("123", "asd"))
+
+    # print(op.divide_numbers('123', '0'))
+
+    # print(op.divide_numbers('123', '00'))
+
+    # print(op.power_numbers(12, "2"))
+

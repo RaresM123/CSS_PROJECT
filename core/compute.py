@@ -85,6 +85,10 @@ class Computation:
         return result, sentences
 
 
-# if __name__ == '__main__':
-#     c = Computation()
-#     print(c.get_result('a+(b*a)', {'a': '2', 'b': '2'}))
+if __name__ == '__main__':
+    c = Computation()
+    print(c.get_result('a+(b*a)', {'a': '2', 'b': '2'}))
+    # print(c.get_result('a+(b*a', {'a': '2', 'b': '2'}))
+    # print(c.get_result('a+(b*a)', [{'a': '2', 'b': '2'}]))
+    # print(c.get_result('', {'a': '2', 'b': '2'}))
+    print(c.get_result('a+(b*a)', {'a': 2, 'b': 2}))

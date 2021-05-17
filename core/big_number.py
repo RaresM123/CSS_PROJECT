@@ -6,7 +6,18 @@ def assert_preconditions(number):
 
     assert number.count('-') == 0, "the number is negative"
     assert number.isnumeric() is True or number == "0", "the number is not numeric"
-    assert number.startswith("0") or number != "0", "The number can't start with 0"
+    assert (number[0] == '0' and len(number) == 1) or number[0] != '0', "The number can't start with 0"
+
+
+def assert_invariant_first(o):
+
+    assert type(o) == BigNumber, "different type for number"
+    assert o is not None, "None input"
+
+
+def assert_invariant_second(number):
+    assert type(number) == str, "different type for number"
+    assert number is not None, "None input"
 
 
 def assert_invariant(number, result):
@@ -32,11 +43,15 @@ def assert_postconditions(result, operation, number_1, number_2):
 class BigNumber:
 
     def __init__(self, number):
+
+        assert_invariant_second(number)
         assert_preconditions(number)
+
         self.number = number
         self.operations = Operations()
 
     def __add__(self, o):
+        assert_invariant_first(o)
         assert_preconditions(number=o.number)
         result = BigNumber(self.operations.add_numbers(self.number, o.number))
         assert_invariant(self.number, result)
@@ -45,6 +60,7 @@ class BigNumber:
         return result
 
     def __sub__(self, o):
+        assert_invariant_first(o)
         assert_preconditions(number=o.number)
         result = BigNumber(self.operations.difference_numbers(self.number, o.number))
         assert_invariant(self.number, result)
@@ -53,6 +69,7 @@ class BigNumber:
         return result
 
     def __mul__(self, o):
+        assert_invariant_first(o)
         assert_preconditions(number=o.number)
         result = BigNumber(self.operations.multiply_numbers(self.number, o.number))
         assert_invariant(self.number, result)
@@ -61,6 +78,7 @@ class BigNumber:
         return result
 
     def __truediv__(self, o):
+        assert_invariant_first(o)
         assert_preconditions(number=o.number)
         result = BigNumber(self.operations.divide_numbers(self.number, o.number))
         assert_invariant(self.number, result)
@@ -69,6 +87,7 @@ class BigNumber:
         return result
 
     def __xor__(self, o):
+        assert_invariant_first(o)
         assert_preconditions(number=o.number)
         result = BigNumber(self.operations.power_numbers(self.number, o.number))
         assert_invariant(self.number, result)
@@ -77,6 +96,7 @@ class BigNumber:
         return result
 
     def __invert__(self):
+
         assert_preconditions(self.number)
         result = BigNumber(self.operations.sqrt_numbers(self.number))
         assert_invariant(self.number, result)
@@ -87,11 +107,22 @@ class BigNumber:
         return self.number
 
 
-# x = BigNumber('3')
-#
-# print(x / BigNumber("2"))
-#
-# y = BigNumber("16")
-# print((~y).number)
-# number = "a123"
-# print(number.startswith("0") is True and len(number) == 1)
+if __name__ == '__main__':
+
+    x = BigNumber('3')
+    print(x / BigNumber("2"))
+
+    y = BigNumber("16")
+    print((~y).number)
+
+    # z = BigNumber('1203232')
+    # print((~z).number)
+    # x = BigNumber("1")
+    # print(x + BigNumber("0123"))
+
+    # x = BigNumber("ads")
+    # print(x + BigNumber("0123"))
+
+    # x = BigNumber(1234)
+    # print(1 + BigNumber("-1234"))
+
